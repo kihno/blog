@@ -1,21 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
+const comment_controller = require('../controllers/commentController');
+
 /* GET comments listing. */
-router.get('/:commentId', function(req, res, next) {
-  res.send('GET single comment');
-});
+router.get('/', comment_controller.comment_list);
 
-router.post('/:commentId', function(req, res, next) {
-  res.send('POST new comment');
-});
+router.get('/:commentId', comment_controller.comment_detail);
 
-router.put('/:commentId', function(req, res, next) {
-  res.send('PUT update comment');
-});
+router.post('/:commentId', comment_controller.comment_post);
 
-router.delete('/:commentId', function(req, res, next) {
-  res.send('DELETE single comment');
-});
+router.put('/:commentId', comment_controller.comment_put);
+
+router.delete('/:commentId', comment_controller.comment_delete);
 
 module.exports = router;
