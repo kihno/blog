@@ -35,10 +35,6 @@ connectDb().then(async () => {
 
         createUsersWithPosts();
     }
-
-    app.listen(4000, () => {
-        console.log(`Blog app listening on port 4000`);
-    });
 });
 
 const createUsersWithPosts = async () => {
@@ -101,8 +97,8 @@ app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/comments', commentsRouter);
 
-// app.listen(3000, () => {
-//     console.log(`Backend is listening on port 3000`);
-// });
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening on port ${process.env.PORT}`)
+});
 
 module.exports = app;

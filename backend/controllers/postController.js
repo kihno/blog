@@ -16,11 +16,19 @@ exports.post_post = async (req, res, next) => {
         user: req.context.me.id,
     });
     
-    return res.send(post)
+    return res.send(post);
 };
 
-exports.post_put = (req, res, next) => {
-    res.send('PUT update post');
+exports.post_put = async (req, res, next) => {
+    const updatedPost = {
+        title: req.body.title,
+        body: req.body.text,
+        user: req.context.me.id,
+    };
+
+    const result = await req.context.Post.findByIdAndUpdate(req.params.id, updatedPost);
+    
+    return res.send(result);
 };
 
 exports.post_delete = async (req, res, next) => {

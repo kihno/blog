@@ -8,8 +8,14 @@ exports.comment_detail = async (req, res, next) => {
     return res.send(comment);
 };
 
-exports.comment_post = (req, res, next) => {
-    res.send('comment new comment');
+exports.comment_post = async (req, res, next) => {
+    const comment = await req.context.Post.create({
+        title: req.body.title,
+        body: req.body.text,
+        user: req.context.me.id,
+    });
+    
+    return res.send(post);
 };
 
 exports.comment_put = (req, res, next) => {

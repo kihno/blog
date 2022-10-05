@@ -17,14 +17,38 @@ exports.user_detail = async (req, res, next) => {
     return res.send(user);
 };
 
-exports.user_post = (req, res, next) => {
-    res.send('POST new user');
+exports.user_post = async (req, res, next) => {
+    const user = await req.context.User.create({
+        first_name: req.body.fist_name,
+        last_name: req.body.last_name,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+    });
+    
+    return res.send(user);
 };
 
-exports.user_put = (req, res, next) => {
-    res.send('PUT update user');
+exports.user_put = async (req, res, next) => {
+    const updatedUser = {
+        first_name: req.body.fist_name,
+        last_name: req.body.last_name,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+    }
+    
+    const result = await req.context.User.findByIdAndUpdate(req.params.id, updatedUser);
+    
+    return res.send(result);
 };
 
-exports.user_delete = (req, res, next) => {
-    res.send('DELETE user');
+exports.user_delete = async (req, res, next) => {
+    const user = await req.context.User.findById(req.params.userId);
+
+    if (user) {
+        await user.remove();
+    }
+
+    return res.send(user);
 };
