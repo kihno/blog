@@ -36,8 +36,8 @@ connectDb().then(async () => {
         createUsersWithPosts();
     }
 
-    app.listen(3000, () => {
-        console.log(`Blog app listening on port ${process.env.PORT}`);
+    app.listen(4000, () => {
+        console.log(`Blog app listening on port 4000`);
     });
 });
 
@@ -88,6 +88,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(async (req, res, next) => {
     req.context = {
+        User,
+        Post,
+        Comment,
         me: await User.findByLogin('kihno'),
     };
     next();

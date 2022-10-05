@@ -3,16 +3,18 @@
 // const bcrypt = require('bcryptjs');
 // const { body, validationResult } = require('express-validator');
 
-const Users = require('../models/user');
-const Posts = require('../models/post');
-const Comments = require('../models/comment');
+// const User = require('../models/user');
+// const Post = require('../models/post');
+// const Comment = require('../models/comment');
 
-exports.user_list = (req, res, next) => {
-    return res.send(Object.values(Users));
+exports.user_list = async (req, res, next) => {
+    const users = await req.context.User.find();
+    return res.send(users);
 };
 
-exports.user_detail = (req, res, next) => {
-    return res.send(Users[req.params.userId]);
+exports.user_detail = async (req, res, next) => {
+    const user = await req.context.User.findbyId(req.params.userId);
+    return res.send(user);
 };
 
 exports.user_post = (req, res, next) => {

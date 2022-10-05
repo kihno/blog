@@ -1,12 +1,11 @@
 
-const Comments = require('../models/comment');
-
 exports.comment_list = (req, res, next) => {
-    return res.send(Object.values(Comments));
+    res.send('GET all comments');
 };
 
-exports.comment_detail = (req, res, next) => {
-    return res.send(Comments[req.params.commentId]);
+exports.comment_detail = async (req, res, next) => {
+    const comment = await req.context.Comment.findbyId(req.params.commentId);
+    return res.send(comment);
 };
 
 exports.comment_post = (req, res, next) => {
