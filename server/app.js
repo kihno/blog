@@ -4,7 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+
 require('dotenv').config();
+require('./passport');
 
 // mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 // const db = mongoose.connection;
@@ -13,6 +15,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
+const auth = require('./routes/auth');
 
 const User = require('./models/user');
 const Post = require('./models/post');
@@ -70,6 +73,8 @@ const createUsersWithPosts = async () => {
 
 const app = express();
 
+
+
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
@@ -90,6 +95,7 @@ app.use(async (req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
+app.use('/auth', auth);
 
 app.get('*', function(req, res, next) {
     const error = new Error(
