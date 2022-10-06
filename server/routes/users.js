@@ -3,7 +3,6 @@ const router = express.Router();
 
 const user_controller = require('../controllers/userController');
 
-/* GET users listing. */
 router.get('/', user_controller.user_list);
 
 router.post('/', user_controller.user_post);

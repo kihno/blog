@@ -20,7 +20,7 @@ exports.post_detail = async (req, res, next) => {
 exports.post_post = async (req, res, next) => {
     const post = await req.context.Post.create({
         title: req.body.title,
-        body: req.body.text,
+        text: req.body.text,
         user: req.context.me.id,
     }).catch((error) => {
         error.statusCode = 400;
@@ -33,7 +33,7 @@ exports.post_post = async (req, res, next) => {
 exports.post_put = async (req, res, next) => {
     const updatedPost = {
         title: req.body.title,
-        body: req.body.text,
+        text: req.body.text,
         user: req.context.me.id,
     };
 

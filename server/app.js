@@ -13,7 +13,6 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
-const commentsRouter = require('./routes/comments');
 
 const User = require('./models/user');
 const Post = require('./models/post');
@@ -53,12 +52,12 @@ const createUsersWithPosts = async () => {
 
     const post1 = new Post({
         title: 'Out with a whimper',
-        body: 'The end is nigh.',
+        text: 'The end is nigh.',
         user: user1.id,
     });
 
     const comment1 = new Comment({
-        body: 'true that',
+        text: 'true that',
         user: user2.id,
         post: post1.id,
     });
@@ -91,7 +90,6 @@ app.use(async (req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
-app.use('/comments', commentsRouter);
 
 app.get('*', function(req, res, next) {
     const error = new Error(
@@ -112,7 +110,7 @@ app.use((error, req, res, next) => {
 
     return res
     .status(error.statusCode)
-    .jston({ error: error.toString() });
+    .json({ error: error.toString() });
 });
 
 app.listen(process.env.PORT, () => {
