@@ -1,0 +1,27 @@
+
+GET http://localhost:4000/posts
+
+###
+
+POST http://localhost:4000/auth
+Content-Type: application/json
+
+{
+    "username":"kihno",
+    "password":"blackapple"
+}
+
+###
+
+POST http://localhost:4000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzQ1YzQyNTc1M2JlNTRlZjU2OWJmNmEiLCJ1c2VybmFtZSI6ImtpaG5vIiwiZW1haWwiOiJzdGlzdHlsZTEzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJEIyZ3NjZHBGMkhyVlNmbkUuLmtsby5RemNacFdVTi5MR2tzQ29McW8yd2RGOFhibS81c3QyIiwiYWRtaW4iOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTAtMTFUMTk6Mjk6NDEuNDc2WiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMTFUMTk6Mjk6NDEuNDc2WiIsIl9fdiI6MCwiaWF0IjoxNjY1NTE2NTk4LCJleHAiOjE2NjU1MjAxOTh9.b5EIQGzqB0HCJnLqyGzwMZiFFtwZyF6Tz1LM3ySu9NI
+
+{
+    "title":"new post",
+    "text":"test test",
+}
+
+###
+
+GET http://localhost:4000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNDVkYmYzYmMzZjBhODI3NGE5YTEzYiIsInVzZXJuYW1lIjoia2lobm8ifSwiaWF0IjoxNjY1NTIyNjc5LCJleHAiOjE2NjU1MjYyNzl9.KbItlWCU1QZqOXD8YRtR8xI6mSosbwHj-HxWMz4X6Pw

@@ -19,8 +19,8 @@ router.post('/', function (req, res, next) {
                 res.send(err);
             }
 
-            const token = jwt.sign(user.toJSON(), process.env.SECRET_KEY, {expiresIn: 3600});
-            return res.json({user, token});
+            const token = jwt.sign(user, process.env.SECRET_KEY, {expiresIn: 3600});
+            return res.json({token});
         });
     })(req, res);
 });

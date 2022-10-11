@@ -38,9 +38,9 @@ passport.use('jwt', new JWTStrategy(
         secretOrKey: process.env.SECRET_KEY
     },
     function(jwtPayload, cb) {
-        return User.findById(jwtPayload.user.id)
+        return User.findById(jwtPayload.id)
         .then(user => {
-            return cb(null, user);
+            return cb(null, jwtPayload.user);
         })
         .catch(err => {
             return cb(err);
