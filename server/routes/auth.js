@@ -5,11 +5,11 @@ const passport = require('passport');
 
 /* POST Login */
 
-router.post('/login', function (req, res, next) {
+router.post('/', function (req, res, next) {
     passport.authenticate('local', {session: false}, (err, user, info) => {
         if (err || !user) {
             return res.status(400).json({
-                message: 'Something is not right',
+                message: err.message,
                 user
             });
         }
@@ -19,7 +19,7 @@ router.post('/login', function (req, res, next) {
                 res.send(err);
             }
 
-            const token = jwt.sign(user, process.env.SECRET_KEY);
+            const token = jwt.sign(user.toJSON(), process.env.SECRET_KEY, {expiresIn: 3600});
             return res.json({user, token});
         });
     })(req, res);
