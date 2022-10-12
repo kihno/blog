@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const { user_list } = require('../controllers/userController');
 
 /* POST Login */
 
@@ -19,7 +20,7 @@ router.post('/', function (req, res, next) {
                 res.send(err);
             }
 
-            const token = jwt.sign(user, process.env.SECRET_KEY, {expiresIn: 3600});
+            const token = jwt.sign({user: user}, process.env.SECRET_KEY, {expiresIn: 3600});
             return res.json({token});
         });
     })(req, res);

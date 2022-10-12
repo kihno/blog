@@ -1,9 +1,9 @@
 
-GET http://localhost:4000/posts
+GET http://localhost:3000/
 
 ###
 
-POST http://localhost:4000/auth
+POST http://localhost:3000/auth
 Content-Type: application/json
 
 {
@@ -13,15 +13,31 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:4000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzQ1YzQyNTc1M2JlNTRlZjU2OWJmNmEiLCJ1c2VybmFtZSI6ImtpaG5vIiwiZW1haWwiOiJzdGlzdHlsZTEzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJEIyZ3NjZHBGMkhyVlNmbkUuLmtsby5RemNacFdVTi5MR2tzQ29McW8yd2RGOFhibS81c3QyIiwiYWRtaW4iOnRydWUsImNyZWF0ZWRBdCI6IjIwMjItMTAtMTFUMTk6Mjk6NDEuNDc2WiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMTFUMTk6Mjk6NDEuNDc2WiIsIl9fdiI6MCwiaWF0IjoxNjY1NTE2NTk4LCJleHAiOjE2NjU1MjAxOTh9.b5EIQGzqB0HCJnLqyGzwMZiFFtwZyF6Tz1LM3ySu9NI
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNDYwNzExNWUxOWIzYTY1NmNiNWIxMyIsInVzZXJuYW1lIjoia2lobm8iLCJlbWFpbCI6InN0aXN0eWxlMTNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka2FLMlQvSURUU3VLb2tlVU5sLkVLT3h0NEdlSXlvWUlGZ0pzYURKN1hUZWlxZHIzOTVmbHkiLCJhZG1pbiI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMi0xMC0xMlQwMDoxNToxNC4xNjlaIiwidXBkYXRlZEF0IjoiMjAyMi0xMC0xMlQwMDoxNToxNC4xNjlaIiwiX192IjowfSwiaWF0IjoxNjY1NTMzNzE3LCJleHAiOjE2NjU1MzczMTd9.FoyeO1vTAGVnPoNrpQ7QMH-s-yjDjofaxvp88GAPwnA
 
 {
-    "title":"new post",
-    "text":"test test",
+    "title": "post title",
+    "text": "post text"
 }
 
 ###
 
-GET http://localhost:4000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNDVkYmYzYmMzZjBhODI3NGE5YTEzYiIsInVzZXJuYW1lIjoia2lobm8ifSwiaWF0IjoxNjY1NTIyNjc5LCJleHAiOjE2NjU1MjYyNzl9.KbItlWCU1QZqOXD8YRtR8xI6mSosbwHj-HxWMz4X6Pw
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNDYwNzExNWUxOWIzYTY1NmNiNWIxMyIsInVzZXJuYW1lIjoia2lobm8iLCJlbWFpbCI6InN0aXN0eWxlMTNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka2FLMlQvSURUU3VLb2tlVU5sLkVLT3h0NEdlSXlvWUlGZ0pzYURKN1hUZWlxZHIzOTVmbHkiLCJhZG1pbiI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMi0xMC0xMlQwMDoxNToxNC4xNjlaIiwidXBkYXRlZEF0IjoiMjAyMi0xMC0xMlQwMDoxNToxNC4xNjlaIiwiX192IjowfSwiaWF0IjoxNjY1NTMzNzE3LCJleHAiOjE2NjU1MzczMTd9.FoyeO1vTAGVnPoNrpQ7QMH-s-yjDjofaxvp88GAPwnA
+
+###
+
+PATCH http://localhost:3000/posts/634607c96a0752a83da553f4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNDYwNzExNWUxOWIzYTY1NmNiNWIxMyIsInVzZXJuYW1lIjoia2lobm8iLCJlbWFpbCI6InN0aXN0eWxlMTNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka2FLMlQvSURUU3VLb2tlVU5sLkVLT3h0NEdlSXlvWUlGZ0pzYURKN1hUZWlxZHIzOTVmbHkiLCJhZG1pbiI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMi0xMC0xMlQwMDoxNToxNC4xNjlaIiwidXBkYXRlZEF0IjoiMjAyMi0xMC0xMlQwMDoxNToxNC4xNjlaIiwiX192IjowfSwiaWF0IjoxNjY1NTMzNzE3LCJleHAiOjE2NjU1MzczMTd9.FoyeO1vTAGVnPoNrpQ7QMH-s-yjDjofaxvp88GAPwnA
+
+{
+    "title": "Updated post title",
+    "text": "Updated post text"
+}
+
+###
+
+GET http://localhost:3000/posts/634607c96a0752a83da553f4

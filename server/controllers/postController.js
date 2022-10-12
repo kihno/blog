@@ -30,19 +30,21 @@ exports.post_post = async (req, res, next) => {
     return res.send(post);
 };
 
-exports.post_put = async (req, res, next) => {
-    const updatedPost = {
-        title: req.body.title,
-        text: req.body.text,
-        user: req.context.me.id,
-    };
-
-    const result = await req.context.Post.findByIdAndUpdate(req.params.id, updatedPost).catch((error) => {
-        error.statusCode = 400;
-        next(error);
-    });
+exports.post_update = async (req, res, next) => {
+    try {
+        const updatedPost = {
+            title: req.body.title,
+            text: req.body.text,
+            user: req.context.me.id,
+        };
     
-    return res.send(result);
+        const result = await req.context.Post.findByIdAndUpdate(req.params.postId, updatedPost, {new: true});
+        console.log(result);
+        res.send(result);
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 };
 
 exports.post_delete = async (req, res, next) => {
