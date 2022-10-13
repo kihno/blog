@@ -10,13 +10,13 @@ const comment_controller = require ('../controllers/commentController');
 
 router.get('/', post_controller.post_list);
 
-router.post('/', passport.authenticate('jwt', { session: false }), post_controller.post_post);
+router.post('/', passport.authenticate('jwt', { session: false }), checkAdmin, post_controller.post_post);
 
 router.get('/:postId', post_controller.post_detail);
 
-router.patch('/:postId', passport.authenticate('jwt', { session: false }), post_controller.post_update);
+router.patch('/:postId', passport.authenticate('jwt', { session: false }), checkAdmin, post_controller.post_update);
 
-router.delete('/:postId', passport.authenticate('jwt', { session: false }), post_controller.post_delete);
+router.delete('/:postId', passport.authenticate('jwt', { session: false }), checkAdmin, post_controller.post_delete);
 
 /* COMMENTS */
 
@@ -26,6 +26,26 @@ router.post('/:postId/comments', passport.authenticate('jwt', { session: false }
 
 router.get('/:postId/comments/:commentId', comment_controller.get_comment);
 
-router.delete('/:postId/comments/:commentId', passport.authenticate('jwt', { session: false }), comment_controller.delete_comment);
+router.delete('/:postId/comments/:commentId', passport.authenticate('jwt', { session: false }), checkPermission, comment_controller.delete_comment);
+
+function checkAdmin(req, res, next) {
+    if (req.user.admin === false) {
+        let error = new Error(`You don't have permission to do that.`);
+        error.statusCode = 401;
+        next(error);
+    }
+    next();
+}
+
+function checkPermission(req, res, next) {
+    req.context.Comment.findById(req.params.commentId).populate('user').then(comment => {
+
+        if (req.user._id !== comment.user.id && req.user.admin === false) {
+            let error = new Error(`You don't have permission to do that.`);
+            error.statusCode = 401;
+            next(error);    }
+        next();
+    });
+}
 
 module.exports = router;

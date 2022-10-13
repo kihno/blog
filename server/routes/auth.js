@@ -19,9 +19,7 @@ router.post('/', function (req, res, next) {
                 res.send(err);
             }
 
-            req.context.me = user;
-            console.log(req.context.me);
-
+            console.log(req.user);
             const token = jwt.sign({user: user}, process.env.SECRET_KEY, {expiresIn: 3600});
             return res.json({token});
         });

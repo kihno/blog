@@ -7,17 +7,27 @@ require('dotenv').config();
 
 const User = require('./models/user');
 
+passport.serializeUser((user, done) => {
+    done(null, user.id)
+});
+
+passport.deserializeUser((id, done) => {
+   User.findById(id).then((user) => {
+    done(null, user)
+   }); 
+});
+
 passport.use('local', new LocalStrategy(
     {
         usernameField: 'username',
         passwordField: 'password'
     }, 
-    function (username, password, cb) {
+    function (username, password, done) {
 
     return User.findOne({username})
         .then(user => {
             if (!user) {
-                return cb(null, false, {message: 'User not found.'});
+                return done(null, false, {message: 'User not found.'});
             }
 
             const validate = user.isValidPassword(password);
@@ -26,9 +36,9 @@ passport.use('local', new LocalStrategy(
             return done(null, false, { message: 'Password is incorrect.' });
             }
 
-            return cb(null, user, {message: 'Logged In Successfully'});
+            return done(null, user, {message: 'Logged In Successfully'});
         })
-        .catch(err => cb(err));
+        .catch(err => done(err));
     }
 ));
 
@@ -37,13 +47,13 @@ passport.use('jwt', new JWTStrategy(
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey: process.env.SECRET_KEY
     },
-    function(jwtPayload, cb) {
-        return User.findById(jwtPayload.id)
+    function(jwtPayload, done) {
+        User.findById(jwtPayload.id)
         .then(user => {
-            return cb(null, jwtPayload.user);
+            return done(null, jwtPayload.user);
         })
         .catch(err => {
-            return cb(err);
+            return done(err);
         });
     }
 ));

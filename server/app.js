@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 
 require('dotenv').config();
 require('./passport');
@@ -48,7 +50,7 @@ const createUsersWithPosts = async () => {
     });
 
     const user2 = new User({
-        username: 'Rorschach',
+        username: 'rorschach',
         email: 'utopiazolaris@gmail.com',
         password: 'crimebuster',
     });
@@ -79,13 +81,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieSession({
+    maxAge:24 * 60 * 60 * 1000,
+    keys: [process.env.SECRET_KEY]
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(async (req, res, next) => {
     req.context = {
         User,
         Post,
         Comment,
-        me: null
+        me: await User.findByLogin('kihno')
     };
     next();
 });

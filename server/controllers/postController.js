@@ -18,11 +18,11 @@ exports.post_detail = async (req, res, next) => {
 };
 
 exports.post_post = async (req, res, next) => {
-    console.log(req.context.me);
+    console.log(req.user);
     const post = await req.context.Post.create({
         title: req.body.title,
         text: req.body.text,
-        user: req.context.me.id,
+        user: req.user,
     }).catch((error) => {
         error.statusCode = 400;
         next(error);
@@ -36,7 +36,7 @@ exports.post_update = async (req, res, next) => {
         const updatedPost = {
             title: req.body.title,
             text: req.body.text,
-            user: req.context.me.id,
+            user: req.user,
         };
     
         const result = await req.context.Post.findByIdAndUpdate(req.params.postId, updatedPost, {new: true});

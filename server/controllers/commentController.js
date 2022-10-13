@@ -29,7 +29,7 @@ exports.post_post_comment = [
 
         const comment = new Comment({
             text: req.body.text,
-            user: req.context.me.id,
+            user: req.user,
             post: req.params.postId
         });
 
