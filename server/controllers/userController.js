@@ -13,7 +13,7 @@ exports.user_list = async (req, res, next) => {
 };
 
 exports.user_detail = async (req, res, next) => {
-    const user = await req.context.User.findbyId(req.params.userId);
+    const user = await req.context.User.findById(req.params.userId);
     return res.send(user);
 };
 
@@ -34,7 +34,7 @@ exports.user_put = async (req, res, next) => {
         password: req.body.password,
     }
     
-    const result = await req.context.User.findByIdAndUpdate(req.params.id, updatedUser);
+    const result = await req.context.User.findByIdAndUpdate(req.params.userId, updatedUser, {new: true});
     
     return res.send(result);
 };

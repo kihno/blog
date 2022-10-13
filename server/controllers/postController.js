@@ -18,6 +18,7 @@ exports.post_detail = async (req, res, next) => {
 };
 
 exports.post_post = async (req, res, next) => {
+    console.log(req.context.me);
     const post = await req.context.Post.create({
         title: req.body.title,
         text: req.body.text,
@@ -39,7 +40,6 @@ exports.post_update = async (req, res, next) => {
         };
     
         const result = await req.context.Post.findByIdAndUpdate(req.params.postId, updatedPost, {new: true});
-        console.log(result);
         res.send(result);
     }
     catch (error) {

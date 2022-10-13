@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const { user_list } = require('../controllers/userController');
 
 /* POST Login */
 
@@ -19,6 +18,9 @@ router.post('/', function (req, res, next) {
             if (err) {
                 res.send(err);
             }
+
+            req.context.me = user;
+            console.log(req.context.me);
 
             const token = jwt.sign({user: user}, process.env.SECRET_KEY, {expiresIn: 3600});
             return res.json({token});

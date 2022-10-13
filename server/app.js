@@ -85,7 +85,7 @@ app.use(async (req, res, next) => {
         User,
         Post,
         Comment,
-        me: await User.findByLogin('kihno'),
+        me: null
     };
     next();
 });

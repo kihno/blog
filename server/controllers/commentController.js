@@ -22,17 +22,14 @@ exports.post_post_comment = [
     .isLength({ min: 1 })
     .blacklist('<>'),
 
-    body('user', 'Please input a username.')
-    .trim()
-    .isLength({ min: 1 })
-    .blacklist('<>'),
-
     (req, res, next) => {
         const errors = validationResult(req);
 
+        console.log(req.context.me);
+
         const comment = new Comment({
             text: req.body.text,
-            user: req.body.user,
+            user: req.context.me.id,
             post: req.params.postId
         });
 
@@ -49,8 +46,11 @@ exports.post_post_comment = [
         }
 
         comment.save((err) => {
-            if (err) { return next(err) }
-
+            if (err) {
+                console.log(err);
+                return next(err)
+            }
+            
             return res.send(comment);
         });
     },
@@ -60,17 +60,6 @@ exports.get_comment = async (req, res, next) => {
     const comment = await req.context.Comment.findById(req.params.commentId);
     return res.send(comment);
 };
-
-// exports.comment_post = async (req, res, next) => {
-//     const comment = await req.context.Post.create({
-//         title: req.body.title,
-//         body: req.body.text,
-//         user: req.context.me.id,
-//     });
-    
-//     return res.send(comment);
-// };
-
 
 exports.delete_comment = (req, res, next) => {
     req.context.Comment.findByIdAndRemove(req.params.commentId, (err) => {

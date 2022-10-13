@@ -8,7 +8,7 @@ const comment_controller = require ('../controllers/commentController');
 
 /* POSTS */
 
-router.get('/', passport.authenticate('jwt', { session: false }), post_controller.post_list);
+router.get('/', post_controller.post_list);
 
 router.post('/', passport.authenticate('jwt', { session: false }), post_controller.post_post);
 
@@ -22,10 +22,10 @@ router.delete('/:postId', passport.authenticate('jwt', { session: false }), post
 
 router.get('/:postId/comments', comment_controller.get_post_comments);
 
-router.post('/:postId/comments', comment_controller.post_post_comment);
+router.post('/:postId/comments', passport.authenticate('jwt', { session: false }), comment_controller.post_post_comment);
 
 router.get('/:postId/comments/:commentId', comment_controller.get_comment);
 
-router.delete('/:postId/comments/:commentId', comment_controller.delete_comment);
+router.delete('/:postId/comments/:commentId', passport.authenticate('jwt', { session: false }), comment_controller.delete_comment);
 
 module.exports = router;
