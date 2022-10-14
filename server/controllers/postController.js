@@ -1,6 +1,8 @@
 
 exports.post_list = async (req, res, next) => {
-    const posts = await req.context.Post.find().catch((error) => {
+    const posts = await req.context.Post.find()
+    .populate('user')
+    .catch((error) => {
         error.statusCode = 400;
         next(error);
     });
