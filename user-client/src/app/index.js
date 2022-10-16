@@ -18,6 +18,7 @@ function App() {
   const [users, setUsers] = useState(null);
   const [posts, setPosts] = useState(null);
   const [isLoggedIn, setLogin] = useState(false);
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     apis.getAllPosts().then(res => {
@@ -29,9 +30,13 @@ function App() {
     })
   }, []);
 
+  useEffect(() => {
+    console.log(token);
+  }, [token]);
+
   return (
     <div className='App'>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} />
       <Routes>
         <Route path='/'  element={<Home posts={posts} />} />
         <Route path='/posts/:id'  element={<Post />} />

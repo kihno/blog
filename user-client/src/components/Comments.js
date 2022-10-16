@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns'
 
 const Comment = (props) => {
     const { comments } = props;
@@ -10,8 +11,8 @@ const Comment = (props) => {
                     return(
                         <div className='comment' key={comment.id}>
                             <div className='CommentHeader'>
-                                <span>{comment.user.username}</span>
-                                <span>{comment.createdAt}</span>
+                                <span><a href={'/users/' + comment.user._id}>{comment.user.username}</a></span>
+                                <span>{format(new Date(comment.createdAt), 'PPp')}</span>
                             </div>
                             <div className='commentText'>{comment.text}</div>
                         </div>
@@ -23,7 +24,6 @@ const Comment = (props) => {
 
     return(
         <section className='comments'>
-            {console.log(comments)}
             {!comments ? "No comments yet." : <CommentSection />}
 
             {/* {comments.map(comment => {

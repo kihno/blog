@@ -19,7 +19,6 @@ router.post('/', function (req, res, next) {
                 res.send(err);
             }
 
-            console.log(req.user);
             const token = jwt.sign({user: user}, process.env.SECRET_KEY, {expiresIn: 3600});
             return res.json({token});
         });

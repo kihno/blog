@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 import Comments from './Comments';
-import axios from 'axios';
 import apis from '../api/index';
 import { useParams } from 'react-router-dom';
 
@@ -20,17 +20,27 @@ const Post = (props) => {
         })
     }, [id]);
 
-    // console.log(post);
-    // console.log(comments);
-    
-    return(
-        <article className='post'>
-            <h1 className='postTitle'>{!post ? 'Loading...' : post.title}</h1>
-            <h4 className='postUser'>Posted By: {!post ? '' : post.user.username}</h4>
-            <p className='postText'>{!post ? '' : post.text}</p>
+    function PostArticle() {
+        return(
+            <article className='post'>
+                <h1 className='postTitle'>{!post ? 'Loading...' : post.title}</h1>
+                <div className='postHeader'>
+                    <h4 className='postUser'>Posted By:
+                        <a className='userLink' href={'/users/' + post.user._id}>{!post ? '' : post.user.username}</a>
+                    </h4>
+                    <span>{!post ? '' : format(new Date(post.createdAt), 'PPp')}</span>
+                </div>
+                <p className='postText'>{!post ? '' : post.text}</p>
 
             <Comments comments={comments} /> 
         </article>
+        )
+    }
+    
+    return(
+        <div className='postContainer'>
+            {!post ? 'Loading...' : <PostArticle />}
+        </div>
     )
 }
 

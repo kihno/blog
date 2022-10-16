@@ -17,7 +17,7 @@ CommentSchema.virtual('url').get(function() {
 });
 
 CommentSchema.virtual('timestamp_formatted').get(function() {
-    return DateTime.fromJSDate(this.timestamp).toLocaleString(DateTime.DATETIME_SHORT);
+    return DateTime.fromJSDate(this.createdAt).toLocaleString(DateTime.DATETIME_SHORT);
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);

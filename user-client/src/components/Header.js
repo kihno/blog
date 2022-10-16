@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserList from './UserList';
+import Login from './Login';
 
 const Header = (props) => {
-    const { user, isLoggedIn } = props;
+    const { user, isLoggedIn, setLogin, setToken } = props;
+
+    const [hidden, setHide] = useState(true);
 
     function UserHeader() {
         return(
             <div className='user'>
-                <h2>Welcome <a href={'/users' + user.id}>{user.username}</a></h2>
+                <h2>Welcome <a href={'/users'}>{!user ? '' : user.username}</a></h2>
                 <button className='logout'>Logout</button>
             </div>
         )
@@ -16,10 +19,14 @@ const Header = (props) => {
     function GuestHeader() {
         return(
             <div className='guest'>
-                <button className='login'>Log In</button>
+                <button className='login' onClick={handleClick}>Log In</button>
                 <button className='adminLogin'>Admin</button>
             </div>
         )
+    }
+
+    function handleClick() {
+        setHide(!hidden);
     }
 
     let greeting;
@@ -44,6 +51,10 @@ const Header = (props) => {
             </ul>
             
             {greeting}
+
+            <div className={hidden ? 'hide' : null}>
+                <Login isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} setHide={setHide} />
+            </div>
             
         </header>
     )
