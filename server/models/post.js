@@ -8,7 +8,6 @@ const PostSchema = new Schema(
         title: { type: String, required: true, maxLength: 100 },
         text: { type: String, required: true, maxLength: 100 },
         user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-        timestamp: { type: String, default: Date() },
         published: { type: Boolean, default: false },
     },
     { timestamps: true },

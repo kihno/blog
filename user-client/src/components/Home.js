@@ -10,7 +10,9 @@ const Home = (props) => {
                 posts.map(post => {
                     return(
                         <article className='post-card' key={post._id}>
-                            <h3 className='post-card-title'>{post.title}</h3>
+                            <h3 className='post-card-title'>
+                                <a href={'/posts/' + post._id}>{post.title}</a>
+                            </h3>
                             <div className='byline'>
                                 <span className='post-card-user'>
                                     <a href={'/users/' + post.user._id}>{post.user.username}</a>

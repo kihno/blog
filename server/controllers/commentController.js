@@ -5,6 +5,7 @@ const Comment = require('../models/comment');
 
 exports.get_post_comments = (req, res, next) => {
     req.context.Comment.find({ post: req.params.postId })
+    .populate('user')
     .sort({ timestamp: -1 })
     .exec(function (err, comments) {
         if (err) {

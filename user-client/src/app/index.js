@@ -9,23 +9,24 @@ import Post from '../components/Post';
 import UserList from '../components/UserList';
 import Profile from '../components/Profile';
 import axios from 'axios';
+import apis from '../api/index';
 
-const baseURL = 'http://localhost:7000';
+// const baseURL = 'http://localhost:8080';
 
 function App() {
+  // const [URL, setURL] = useState(baseURL);
   const [users, setUsers] = useState(null);
   const [posts, setPosts] = useState(null);
-  const [comments, setComments] = useState(null);
   const [isLoggedIn, setLogin] = useState(false);
 
   useEffect(() => {
-    axios.get(`${baseURL}/posts`).then((res) => {
+    apis.getAllPosts().then(res => {
       setPosts(res.data);
     });
 
-    axios.get(`${baseURL}/users`).then((res) => {
+    apis.getAllUsers().then(res => {
       setUsers(res.data);
-    });
+    })
   }, []);
 
   return (

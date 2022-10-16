@@ -11,7 +11,9 @@ exports.post_list = async (req, res, next) => {
 };
 
 exports.post_detail = async (req, res, next) => {
-    const post = await req.context.Post.findById(req.params.postId).catch((error) => {
+    const post = await req.context.Post.findById(req.params.postId)
+    .populate('user')
+    .catch((error) => {
         error.statusCode = 400;
         next(error);
     });
