@@ -6,7 +6,7 @@ const Login = (props) => {
     const { setLogin, setHide } = props;
 
     const [user, setUser] = useState({username:'', password:''});
-    const [cookies, setCookie, removeCookie] = useCookies(['jwt_token']);
+    const [cookie, setCookie] = useCookies(['jwt_token']);
 
     const handleUsernameChange = (e) => {
         const username = e.target.value;
@@ -25,9 +25,7 @@ const Login = (props) => {
 
         apis.login(user).then(res => {
             setLogin(true);
-            // setToken(res.data.token);
             setCookie('jwt_token', res.data);
-            console.log(cookies);
             setUser({username:'', password:''});
             setHide(true);
         });

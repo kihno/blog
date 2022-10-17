@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { useParams } from 'react-router-dom';
+import apis from "../api";
 
 const CommentForm = (props) => {
+    const { postId } = props;
+    const [ comment, setComment ] = useState('');
+
+    function handleInput(e) {
+        const input = e.target.value;
+
+        setComment(input);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        apis.insertComment(postId, comment);
+    }
 
     return(
         <section className='commentForm'>
-            <form>
-                <label for='text'>
-                    <input type='text' name='text'></input>
+            <form action={`/posts/${postId}/comments`}>
+                <label htmlFor='text'>
+                    <input type='text' name='text' value={comment} onChange={handleInput}></input>
                 </label>
-                <button stype='submit'></button>
+                <button stype='submit' onClick={handleSubmit}>Post</button>
             </form>
         </section>
     )

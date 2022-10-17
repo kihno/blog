@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import UserList from './UserList';
 import Login from './Login';
 
 const Header = (props) => {
-    const { user, isLoggedIn, setLogin, setToken } = props;
+    const { user, isLoggedIn, setLogin, setToken, setCookie } = props;
+    const [cookie, removeCookie] = useCookies();
 
     const [hidden, setHide] = useState(true);
 
@@ -11,7 +13,7 @@ const Header = (props) => {
         return(
             <div className='user'>
                 <h2>Welcome <a href={'/users'}>{!user ? '' : user.username}</a></h2>
-                <button className='logout'>Logout</button>
+                <button className='logout' onClick={handleLogout}>Logout</button>
             </div>
         )
     }
@@ -28,6 +30,12 @@ const Header = (props) => {
     function handleClick() {
         setHide(!hidden);
     }
+
+    const handleLogout = (e) => {
+        setLogin(false);
+        setToken(null);
+        removeCookie('jwt_token');
+     }
 
     let greeting;
     if (isLoggedIn) {

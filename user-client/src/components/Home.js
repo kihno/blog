@@ -4,11 +4,10 @@ import { format } from 'date-fns'
 const Home = (props) => {
     const { posts } = props;
 
-    return(
-        <main className='main'>
-            <h1>Welcome to my blog!</h1>
-            {posts && 
-                posts.map(post => {
+    function PostLayout() {
+        return(
+            <section className='posts'>
+                {posts.map(post => {
                     return(
                         <article className='post-card' key={post._id}>
                             <h3 className='post-card-title'>
@@ -23,8 +22,15 @@ const Home = (props) => {
                             <p className='post-card-text'>{post.text}</p>
                         </article>
                     )
-                })   
-            }
+                })}
+            </section>
+        )
+    }
+
+    return(
+        <main className='main'>
+            <h1>Welcome to my blog!</h1>
+            {!posts ? 'Loading...' : <PostLayout /> }
         </main>
     )
 }

@@ -5,6 +5,7 @@ import apis from '../api/index';
 import { useParams } from 'react-router-dom';
 
 const Post = (props) => {
+    const { isLoggedIn, setLogin, setToken } = props;
     const { id } = useParams();
 
     const [post, setPost] = useState(null);
@@ -32,7 +33,7 @@ const Post = (props) => {
                 </div>
                 <p className='postText'>{!post ? '' : post.text}</p>
 
-            <Comments comments={comments} /> 
+            <Comments comments={comments} postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} /> 
         </article>
         )
     }

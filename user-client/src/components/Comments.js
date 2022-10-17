@@ -1,15 +1,17 @@
 import React from 'react';
 import { format } from 'date-fns'
+import Login from './Login';
+import CommentForm from './CommentForm';
 
 const Comment = (props) => {
-    const { comments } = props;
+    const { comments, isLoggedIn, postId, setLogin, setToken } = props;
 
     function CommentSection() {
         return(
             <section className='comments'>
                 {comments.map(comment => {
                     return(
-                        <div className='comment' key={comment.id}>
+                        <div className='comment' key={comment._id}>
                             <div className='CommentHeader'>
                                 <span><a href={'/users/' + comment.user._id}>{comment.user.username}</a></span>
                                 <span>{format(new Date(comment.createdAt), 'PPp')}</span>
@@ -22,18 +24,22 @@ const Comment = (props) => {
         )
     }
 
-    return(
-        <section className='comments'>
-            {!comments ? "No comments yet." : <CommentSection />}
+    function SignIn() {
+        return(
+            <section className='comment-login'>
+                <button>Log In</button>
+                <p>Log in to post comment.
+                    <a href='/signup'>Sign Up</a>
+                </p>
+            </section>
+        )
+    }
 
-            {/* {comments.map(comment => {
-                return <article className='comment'>
-                    <h4 className='commentUser'>{comment.user}</h4>
-                    <p className='commentTime'>{comment.createdAt}</p>
-                    <p className='commentText'>{comment.text}</p>
-                </article>
-            })} */}
-        </section>
+    return(
+        <div className='commentContainer'>
+            {isLoggedIn ? <CommentForm postId={postId} /> : <SignIn />}
+            {!comments ? "No comments yet." : <CommentSection />}
+        </div>
     )
 }
 

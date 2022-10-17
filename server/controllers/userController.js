@@ -27,7 +27,7 @@ exports.user_post = async (req, res, next) => {
     return res.send(user);
 };
 
-exports.user_put = async (req, res, next) => {
+exports.user_update = async (req, res, next) => {
     const updatedUser = {
         username: req.body.username,
         email: req.body.email,
