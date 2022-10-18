@@ -30,15 +30,19 @@ function App() {
     apis.getAllUsers().then(res => {
       setUsers(res.data);
     });
+  }, []);
 
-    if (cookies.jwt_token) {
+  useEffect(() => {
+    if (cookies.jwt_token === undefined) {
+      setLogin(false);
+    } else {
       setLogin(true);
     }
   }, [cookies]);
 
   return (
     <div className='App'>
-      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} />
+      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} />
       <Routes>
         <Route path='/'  element={<Home posts={posts} />} />
         <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} />} />

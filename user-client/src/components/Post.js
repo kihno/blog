@@ -24,17 +24,17 @@ const Post = (props) => {
     function PostArticle() {
         return(
             <article className='post'>
-                <h1 className='postTitle'>{!post ? 'Loading...' : post.title}</h1>
+                <h1 className='postTitle'>{post.title}</h1>
                 <div className='postHeader'>
                     <h4 className='postUser'>Posted By:
-                        <a className='userLink' href={'/users/' + post.user._id}>{!post ? '' : post.user.username}</a>
+                        <a className='userLink' href={'/users/' + post.user._id}>{post.user.username}</a>
                     </h4>
-                    <span>{!post ? '' : format(new Date(post.createdAt), 'PPp')}</span>
+                    <span>{format(new Date(post.createdAt), 'PPp')}</span>
                 </div>
-                <p className='postText'>{!post ? '' : post.text}</p>
+                <p className='postText'>{post.text}</p>
 
-            <Comments comments={comments} postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} /> 
-        </article>
+                <Comments comments={comments} postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} /> 
+            </article>
         )
     }
     

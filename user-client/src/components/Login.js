@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import { useCookies } from 'react-cookie';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import apis from "../api";
 
 const Login = (props) => {
-    const { setLogin, setHide } = props;
+    const { setLogin, setHide, cookies, setCookie } = props;
 
     const [user, setUser] = useState({username:'', password:''});
-    const [cookie, setCookie] = useCookies(['jwt_token']);
+
+    useEffect(() => {
+        console.log(cookies.jwt_token);
+    }, [cookies]);
 
     const handleUsernameChange = (e) => {
         const username = e.target.value;
@@ -25,7 +28,7 @@ const Login = (props) => {
 
         apis.login(user).then(res => {
             setLogin(true);
-            setCookie('jwt_token', res.data);
+            setCookie('jwt_token', res.data.token);
             setUser({username:'', password:''});
             setHide(true);
         });

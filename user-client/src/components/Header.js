@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import UserList from './UserList';
 import Login from './Login';
+import axios from 'axios';
 
 const Header = (props) => {
-    const { user, isLoggedIn, setLogin, setToken, setCookie } = props;
-    const [cookie, removeCookie] = useCookies();
+    const { user, isLoggedIn, setLogin, setToken, cookies, setCookie, removeCookie } = props;
 
     const [hidden, setHide] = useState(true);
 
@@ -35,7 +35,7 @@ const Header = (props) => {
         setLogin(false);
         setToken(null);
         removeCookie('jwt_token');
-     }
+    }
 
     let greeting;
     if (isLoggedIn) {
@@ -61,7 +61,7 @@ const Header = (props) => {
             {greeting}
 
             <div className={hidden ? 'hide' : null}>
-                <Login isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} setHide={setHide} />
+                <Login isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} setHide={setHide} cookies={cookies} setCookie={setCookie} />
             </div>
             
         </header>
