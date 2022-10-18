@@ -2,26 +2,31 @@ import React, { useEffect, useState } from "react";
 import apis from "../api";
 
 const CommentForm = (props) => {
-    const { postId } = props;
-    const [ comment, setComment ] = useState('');
+    const { postId, setComments } = props;
+    const [ comment, setComment ] = useState({text: ''});
 
     function handleInput(e) {
         const input = e.target.value;
 
-        setComment(input);
+        setComment({text: input});
     }
 
     function handleSubmit(e) {
         e.preventDefault();
+        setComment({text: ''});
 
-        apis.insertComment(postId, comment);
+        apis.insertComment(postId, comment).then(() => {
+            apis.getPostComments(postId).then(res => {
+                setComments(res.data);
+            });
+        });
     }
 
     return(
         <section className='commentForm'>
             <form action={`/posts/${postId}/comments`}>
                 <label htmlFor='text'>
-                    <input type='text' name='text' value={comment} onChange={handleInput}></input>
+                    <input type='text' name='text' value={comment.text} onChange={handleInput}></input>
                 </label>
                 <button stype='submit' onClick={handleSubmit}>Post</button>
             </form>

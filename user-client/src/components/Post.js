@@ -33,7 +33,7 @@ const Post = (props) => {
                 </div>
                 <p className='postText'>{post.text}</p>
 
-                <Comments comments={comments} postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} /> 
+                <Comments postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} /> 
             </article>
         )
     }

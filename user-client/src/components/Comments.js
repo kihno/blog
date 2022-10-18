@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns'
-import Login from './Login';
+import apis from '../api';
 import CommentForm from './CommentForm';
 
 const Comment = (props) => {
-    const { comments, isLoggedIn, postId, setLogin, setToken } = props;
+    const { isLoggedIn, postId, setLogin, setToken } = props;
+
+    const [comments, setComments] = useState(null);
+
+    useEffect(() => {
+        apis.getPostComments(postId).then(res => {
+            setComments(res.data);
+        });
+    }, [postId]);
 
     function CommentSection() {
         return(
@@ -37,7 +45,7 @@ const Comment = (props) => {
 
     return(
         <div className='commentContainer'>
-            {isLoggedIn ? <CommentForm postId={postId} /> : <SignIn />}
+            {isLoggedIn ? <CommentForm postId={postId} setComments={setComments} /> : <SignIn />}
             {!comments ? "No comments yet." : <CommentSection />}
         </div>
     )

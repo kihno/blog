@@ -7,9 +7,9 @@ const Login = (props) => {
 
     const [user, setUser] = useState({username:'', password:''});
 
-    useEffect(() => {
-        console.log(cookies.jwt_token);
-    }, [cookies]);
+    // useEffect(() => {
+    //     console.log(cookies.jwt_token);
+    // }, [cookies]);
 
     const handleUsernameChange = (e) => {
         const username = e.target.value;
