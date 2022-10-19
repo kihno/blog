@@ -4,37 +4,18 @@ const api = axios.create({
     baseURL: 'http://localhost:8080/',
 });
 
-
-const token = document.cookie;
-
 function getCookie(name) {
     const cookieArr = document.cookie.split(';');
 
     for (let i=0; i < cookieArr.length; i++) {
         let cookiePair = cookieArr[i].split('=');
 
-        if (name == cookiePair[0].trim()) {
+        if (name === cookiePair[0].trim()) {
             return decodeURIComponent(cookiePair[1]);
         }
     }
     return null;
 }
-
-// const credApi = axios.create({
-//     withCredentials: true,
-//     baseURL: 'http://localhost:8080/',
-// });
-
-// let config;
-// if (cookies) {
-//     config = {
-//         headers: {
-//             Authorization: `Bearer ${cookies.jwt_token}`
-//         },
-//     }
-// }
-
-
 
 let config = {
     headers: {
