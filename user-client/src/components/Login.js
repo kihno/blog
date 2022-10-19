@@ -1,15 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import apis from "../api";
 
 const Login = (props) => {
-    const { setLogin, setHide, cookies, setCookie } = props;
+    const { setLogin, setHide, setCookie } = props;
 
     const [user, setUser] = useState({username:'', password:''});
-
-    // useEffect(() => {
-    //     console.log(cookies.jwt_token);
-    // }, [cookies]);
 
     const handleUsernameChange = (e) => {
         const username = e.target.value;

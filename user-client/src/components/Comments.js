@@ -4,7 +4,7 @@ import apis from '../api';
 import CommentForm from './CommentForm';
 
 const Comment = (props) => {
-    const { isLoggedIn, postId, setLogin, setToken } = props;
+    const { isLoggedIn, postId } = props;
 
     const [comments, setComments] = useState(null);
 
@@ -14,10 +14,15 @@ const Comment = (props) => {
         });
     }, [postId]);
 
+    let sortComments;
+    if (comments !== null) {
+        sortComments = [...comments].sort((a,b) => a.createdAt > b.createdAt ? -1 : 1);
+    }
+
     function CommentSection() {
         return(
             <section className='comments'>
-                {comments.map(comment => {
+                {sortComments.map(comment => {
                     return(
                         <div className='comment' key={comment._id}>
                             <div className='CommentHeader'>
@@ -36,7 +41,7 @@ const Comment = (props) => {
         return(
             <section className='comment-login'>
                 <button>Log In</button>
-                <p>Log in to post comment.
+                <p>{'Log in to post comment. Or '}
                     <a href='/signup'>Sign Up</a>
                 </p>
             </section>

@@ -9,6 +9,7 @@ import Home from '../components/Home';
 import Post from '../components/Post';
 import UserList from '../components/UserList';
 import Profile from '../components/Profile';
+import SignUp from '../components/SignUp';
 import Login from '../components/Login';
 import apis from '../api/index';
 
@@ -19,7 +20,6 @@ function App() {
   const [users, setUsers] = useState(null);
   const [posts, setPosts] = useState(null);
   const [isLoggedIn, setLogin] = useState(false);
-  const [token, setToken] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['jwt_token']);
 
   useEffect(() => {
@@ -32,20 +32,14 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    if (cookies.jwt_token === undefined) {
-      setLogin(false);
-    } else {
-      setLogin(true);
-    }
-  }, [cookies]);
-
   return (
     <div className='App'>
-      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} />
+      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} />
       <Routes>
         <Route path='/'  element={<Home posts={posts} />} />
-        <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} />} />
         <Route path='/profile'  element={<Profile />} />
         <Route path='/users'  element={<UserList users={users} />} />
       </Routes>

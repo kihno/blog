@@ -44,3 +44,12 @@
 .userLink{
   margin-left: 5px;
 }
+
+.signupForm {
+  display: grid;
+  justify-items: start;
+}
+
+.invalid {
+  outline: 2px solid red;
+}

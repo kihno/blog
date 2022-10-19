@@ -36,7 +36,6 @@ exports.post_post_comment = [
 
         if (!errors.isEmpty()) {
             req.context.Comment.find({ post: req.params.postId })
-            .sort({ timestamp: -1 })
             .exec(function (err, comments) {
                 if (err) {
                     return next(err);

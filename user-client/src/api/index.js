@@ -51,6 +51,7 @@ export const getCommentById = (postId, commentId) => api.get(`posts/${postId}/co
 export const insertComment = (id, payload) => api.post(`/posts/${id}/comments`, payload, config);
 export const deleteComment = (postId, commentId) => api.delete(`/posts/${postId}/comments/${commentId}`, config);
 export const getAllUsers = () => api.get('/users');
+export const insertUser = (payload) => api.post('/users', payload);
 export const login = user => api.post('/auth', user);
 
 const apis = {
@@ -61,6 +62,7 @@ const apis = {
     insertComment,
     deleteComment,
     getAllUsers,
+    insertUser,
     login
 }
 

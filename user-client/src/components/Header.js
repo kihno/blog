@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useCookies } from 'react-cookie';
-import UserList from './UserList';
+import { useNavigate } from 'react-router-dom';
 import Login from './Login';
-import axios from 'axios';
+
 
 const Header = (props) => {
-    const { user, isLoggedIn, setLogin, setToken, cookies, setCookie, removeCookie } = props;
+    const { user, isLoggedIn, setLogin, cookies, setCookie, removeCookie } = props;
 
     const [hidden, setHide] = useState(true);
+    const navigate = useNavigate();
 
     function UserHeader() {
         return(
@@ -21,19 +21,23 @@ const Header = (props) => {
     function GuestHeader() {
         return(
             <div className='guest'>
-                <button className='login' onClick={handleClick}>Log In</button>
+                <button className='login' onClick={handleLoginClick}>Log In</button>
+                <button className='login' onClick={handleSignupClick}>Sign Up</button>
                 <button className='adminLogin'>Admin</button>
             </div>
         )
     }
 
-    function handleClick() {
+    function handleLoginClick() {
         setHide(!hidden);
     }
 
-    const handleLogout = (e) => {
+    function handleSignupClick() {
+        navigate('/signup');
+    }
+
+    const handleLogout = () => {
         setLogin(false);
-        setToken(null);
         removeCookie('jwt_token');
     }
 
@@ -61,7 +65,7 @@ const Header = (props) => {
             {greeting}
 
             <div className={hidden ? 'hide' : null}>
-                <Login isLoggedIn={isLoggedIn} setLogin={setLogin} setToken={setToken} setHide={setHide} cookies={cookies} setCookie={setCookie} />
+                <Login isLoggedIn={isLoggedIn} setLogin={setLogin} setHide={setHide} cookies={cookies} setCookie={setCookie} />
             </div>
             
         </header>
