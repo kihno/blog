@@ -32,14 +32,35 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    if (getCookie('jwt_token')) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }, []);
+
+  function getCookie(name) {
+    const cookieArr = document.cookie.split(';');
+
+    for (let i=0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split('=');
+
+        if (name === cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    return null;
+  }
+
   return (
     <div className='App'>
       <Header isLoggedIn={isLoggedIn} setLogin={setLogin} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} />
       <Routes>
         <Route path='/'  element={<Home posts={posts} />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} />} />
+        <Route path='/login' element={<Login setLogin={setLogin} setCookie={setCookie} />} />
+        <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} />} />
         <Route path='/profile'  element={<Profile />} />
         <Route path='/users'  element={<UserList users={users} />} />
       </Routes>

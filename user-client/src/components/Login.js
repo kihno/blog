@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import apis from "../api";
 
 const Login = (props) => {
     const { setLogin, setHide, setCookie } = props;
-
     const [user, setUser] = useState({username:'', password:''});
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(location);
+    }, [location]);
 
     const handleUsernameChange = (e) => {
         const username = e.target.value;
@@ -25,12 +31,19 @@ const Login = (props) => {
             setLogin(true);
             setCookie('jwt_token', res.data.token);
             setUser({username:'', password:''});
-            setHide(true);
+            if (setHide) {
+                setHide(true);
+            }
+            
+            if (location.pathname === '/login') {
+                navigate(-2);
+            }
         });
     }
 
     return(
         <section className="login">
+            {location.state && <div className='message'>{location.state.message}</div>}
             <form action='#'>
                 <label htmlFor='username'>Username:
                     <input type='text' name='username' value={user.username} onChange={handleUsernameChange}></input>

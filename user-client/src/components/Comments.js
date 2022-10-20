@@ -4,7 +4,7 @@ import apis from '../api';
 import CommentForm from './CommentForm';
 
 const Comment = (props) => {
-    const { isLoggedIn, postId } = props;
+    const { isLoggedIn, postId, getCookie } = props;
 
     const [comments, setComments] = useState(null);
 
@@ -50,7 +50,7 @@ const Comment = (props) => {
 
     return(
         <div className='commentContainer'>
-            {isLoggedIn ? <CommentForm postId={postId} setComments={setComments} /> : <SignIn />}
+            {isLoggedIn ? <CommentForm postId={postId} setComments={setComments} getCooke={getCookie} /> : <SignIn />}
             {!comments ? "No comments yet." : <CommentSection />}
         </div>
     )

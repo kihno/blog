@@ -10,94 +10,83 @@ const SignUp = () => {
         password: '',
         confirmPassword: ''
     });
-    const [passwordMessage, setPasswordMessage] = useState('');
     const [emailError, setEmailError] = useState({valid: false});
     const [usernameError, setUsernameError] = useState({valid: false});
     const [passwordError, setPasswordError] = useState({valid: false});
     const [confirmPasswordError, setConfirmPasswordError] = useState({valid: false});
-    const [valid, setValid] = useState(false);
-    const [error, setError] = useState(null);
 
     function handleEmailInput(e) {
         const email = e.target.value;
-
         setUser({...user, email});
+
+        if (user.email !== '') {
+            setEmailError({valid: true});
+        }
     }
 
     function handleUsernameInput(e) {
         const username = e.target.value;
-
         setUser({...user, username});
+
+        if (user.username !== '') {
+            setUsernameError({valid: true});
+        }
     }
 
     function handlePasswordInput(e) {
         const password = e.target.value;
-
         setUser({...user, password});
+
+        if (user.password !== '') {
+            setPasswordError({valid: true});
+        }
     }
 
     function handleConformPasswordInput(e) {
         const confirmPassword = e.target.value;
-
         setUser({...user, confirmPassword});
-    }
 
-    // function validatePassword() {
-    //     if (user.password !== user.confirmPassword) {
-    //         setValid(false);
-    //         setPasswordMessage('Passwords do not match.');
-    //     } else if (user.password === user.confirmPassword) {
-    //         setValid(true);
-    //         setPasswordMessage('');
-    //     }
-    // }
+        if (confirmPassword !== user.password) {
+            setConfirmPasswordError({valid: false, error: 'Passwords do not match'});
+        } else {
+            setConfirmPasswordError({valid: true});
+        }
+    }
 
     function validateForm(e) {
         if (user.email === '') {
             setEmailError({valid: false, error: 'Please input valid email.'});
-            setValid(false);
         } else {
             setEmailError({valid: true});
         }
 
         if (user.username === '') {
             setUsernameError({valid: false, error: 'Please input username.'});
-            setValid(false);
         } else {
             setUsernameError({valid: true});
         }
 
         if (user.password === '') {
             setPasswordError({valid: false, error: 'Please input a password.'});
-            setValid(false);
         } else {
             setPasswordError({valid: true});
         }
 
         if (user.password !== user.confirmPassword) {
             setConfirmPasswordError({valid: false, error: 'Passwords do not match.'});
-            setValid(false);
         } else {
             setConfirmPasswordError({valid: true});
         }
-
-        // if (emailError.valid && usernameError.valid && passwordError.valid && confirmPasswordError.valid) {
-        //     setValid(true);
-        // }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
-        validateForm()
+        validateForm();
 
         if (emailError.valid && usernameError.valid && passwordError.valid && confirmPasswordError.valid) {
-            console.log(emailError.valid);
-            console.log(usernameError.valid);
-            console.log(passwordError.valid);
-            console.log(confirmPasswordError.valid);
-            apis.insertUser(user).then(res => {
-                navigate('/login');
+            apis.insertUser(user).then(() => {
+                navigate('/login', { state: { message: 'Sign up successful. Log in to continue.' } });
             }).catch(error => {
                 let message = error.response.data.error.split(': ');
 

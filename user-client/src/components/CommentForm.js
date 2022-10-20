@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import apis from "../api";
 
 const CommentForm = (props) => {
-    const { postId, setComments } = props;
+    const { postId, setComments, getCookie } = props;
     const [ comment, setComment ] = useState({text: ''});
 
     function handleInput(e) {
@@ -13,13 +13,28 @@ const CommentForm = (props) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setComment({text: ''});
 
-        apis.insertComment(postId, comment).then(() => {
+        let token = getCookieToken('jwt_token');
+
+        apis.insertComment(postId, comment, token).then(() => {
             apis.getPostComments(postId).then(res => {
                 setComments(res.data);
             });
+            setComment({text: ''});
         });
+    }
+
+    function getCookieToken(name) {
+        const cookieArr = document.cookie.split(';');
+    
+        for (let i=0; i < cookieArr.length; i++) {
+            let cookiePair = cookieArr[i].split('=');
+    
+            if (name === cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
     }
 
     return(
