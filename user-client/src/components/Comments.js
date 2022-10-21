@@ -40,9 +40,8 @@ const Comment = (props) => {
     function SignIn() {
         return(
             <section className='comment-login'>
-                <button>Log In</button>
                 <p>{'Log in to post comment. Or '}
-                    <a href='/signup'>Sign Up</a>
+                    <a href='/signup'>Sign Up</a>.
                 </p>
             </section>
         )

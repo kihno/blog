@@ -37,8 +37,8 @@ const Header = (props) => {
     }
 
     const handleLogout = () => {
+        removeCookie('jwt_token', {path: '/'});
         setLogin(false);
-        removeCookie('jwt_token');
     }
 
     let greeting;
