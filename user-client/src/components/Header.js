@@ -4,15 +4,17 @@ import Login from './Login';
 
 
 const Header = (props) => {
-    const { user, isLoggedIn, setLogin, cookies, setCookie, removeCookie } = props;
+    const { isLoggedIn, setLogin, cookies, setCookie, getCookie, removeCookie } = props;
 
     const [hidden, setHide] = useState(true);
     const navigate = useNavigate();
+    const user = getCookie('username');
+    const userId = getCookie('user_id')
 
     function UserHeader() {
         return(
             <div className='user'>
-                <h2>Welcome <a href={'/users'}>{user && user.username}</a></h2>
+                <h2>Welcome <a href={'/users/' + userId}>{user}</a></h2>
                 <button className='logout' onClick={handleLogout}>Logout</button>
             </div>
         )

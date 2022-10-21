@@ -20,7 +20,7 @@ function App() {
   const [users, setUsers] = useState(null);
   const [posts, setPosts] = useState(null);
   const [isLoggedIn, setLogin] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['jwt_token', 'user_id', 'admin']);
+  const [cookies, setCookie, removeCookie] = useCookies(['jwt_token', 'user_id', 'admin', 'username']);
 
   useEffect(() => {
     apis.getAllPosts().then(res => {
@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} />
+      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} cookies={cookies} setCookie={setCookie} getCookie={getCookie} removeCookie={removeCookie} />
       <Routes>
         <Route path='/'  element={<Home posts={posts} />} />
         <Route path='/signup' element={<SignUp />} />

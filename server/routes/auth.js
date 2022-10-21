@@ -20,7 +20,7 @@ router.post('/', function (req, res, next) {
             }
 
             const token = jwt.sign({user: user}, process.env.SECRET_KEY, {expiresIn: 3600});
-            const authUser = {admin: user.admin, id: user.id}
+            const authUser = {admin: user.admin, id: user.id, username: user.username}
             return res.json({token, authUser});
         });
     })(req, res);
