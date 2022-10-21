@@ -14,7 +14,7 @@ const CommentForm = (props) => {
     function handleSubmit(e) {
         e.preventDefault();
 
-        let token = getCookieToken('jwt_token');
+        let token = getCookie('jwt_token');
 
         apis.insertComment(postId, comment, token).then(() => {
             apis.getPostComments(postId).then(res => {
@@ -22,19 +22,6 @@ const CommentForm = (props) => {
             });
             setComment({text: ''});
         });
-    }
-
-    function getCookieToken(name) {
-        const cookieArr = document.cookie.split(';');
-    
-        for (let i=0; i < cookieArr.length; i++) {
-            let cookiePair = cookieArr[i].split('=');
-    
-            if (name === cookiePair[0].trim()) {
-                return decodeURIComponent(cookiePair[1]);
-            }
-        }
-        return null;
     }
 
     return(

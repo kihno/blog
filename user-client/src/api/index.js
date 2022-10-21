@@ -30,7 +30,7 @@ export const getAllPosts = () => api.get('/posts');
 export const getPostComments = id => api.get(`/posts/${id}/comments`);
 export const getCommentById = (postId, commentId) => api.get(`posts/${postId}/comments/${commentId}`);
 export const insertComment = (id, payload, token) => api.post(`/posts/${id}/comments`, payload, { headers: { Authorization: `Bearer ${token}` } });
-export const deleteComment = (postId, commentId) => api.delete(`/posts/${postId}/comments/${commentId}`);
+export const deleteComment = (postId, commentId, token) => api.delete(`/posts/${postId}/comments/${commentId}`, { headers: { Authorization: `Bearer ${token}` } });
 export const getAllUsers = () => api.get('/users');
 export const insertUser = (payload) => api.post('/users', payload);
 export const login = user => api.post('/auth', user);

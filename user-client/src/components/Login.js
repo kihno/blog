@@ -29,7 +29,11 @@ const Login = (props) => {
 
         apis.login(user).then(res => {
             setLogin(true);
+           
             setCookie('jwt_token', res.data.token, {path: '/'});
+            setCookie('user_id', res.data.authUser.id, {path: '/'});
+            setCookie('admin', res.data.authUser.admin, {path: '/'});
+            
             setUser({username:'', password:''});
             if (setHide) {
                 setHide(true);

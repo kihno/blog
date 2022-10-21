@@ -20,7 +20,7 @@ function App() {
   const [users, setUsers] = useState(null);
   const [posts, setPosts] = useState(null);
   const [isLoggedIn, setLogin] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['jwt_token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['jwt_token', 'user_id', 'admin']);
 
   useEffect(() => {
     apis.getAllPosts().then(res => {

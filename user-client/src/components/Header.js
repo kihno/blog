@@ -12,7 +12,7 @@ const Header = (props) => {
     function UserHeader() {
         return(
             <div className='user'>
-                <h2>Welcome <a href={'/users'}>{!user ? '' : user.username}</a></h2>
+                <h2>Welcome <a href={'/users'}>{user && user.username}</a></h2>
                 <button className='logout' onClick={handleLogout}>Logout</button>
             </div>
         )
@@ -38,6 +38,8 @@ const Header = (props) => {
 
     const handleLogout = () => {
         removeCookie('jwt_token', {path: '/'});
+        removeCookie('user_id', {path: '/'});
+        removeCookie('admin', {path: '/'});
         setLogin(false);
     }
 

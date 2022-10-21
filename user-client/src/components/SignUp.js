@@ -64,7 +64,7 @@ const SignUp = () => {
             setUsernameError({valid: false, error: 'Please input username.'});
         } else {
             setUsernameError({valid: true});
-        }
+    }
 
         if (user.password === '') {
             setPasswordError({valid: false, error: 'Please input a password.'});
@@ -80,7 +80,7 @@ const SignUp = () => {
     }
 
     async function handleSubmit(e) {
-        e.preventDefault();
+            e.preventDefault();
 
         validateForm();
 
@@ -97,7 +97,7 @@ const SignUp = () => {
                 if (message[0] === 'usernameError') {
                     setUsernameError({valid: false, error: message[1]});
                 }
-            });
+           });
         }
 
     };
