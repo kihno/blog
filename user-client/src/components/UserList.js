@@ -9,7 +9,7 @@ const UserList = (props) => {
             {users && users.map(user => {
                 return( 
                     <li key={user._id}>
-                        <a href={'/users' + user._id}>{user.username}</a>
+                        <a href={'/users/' + user._id}>{user.username}</a>
                     </li>
                 )
             })}

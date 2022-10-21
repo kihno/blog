@@ -44,7 +44,7 @@ UserSchema.pre('remove', function(next) {
 });
 
 UserSchema.virtual('url').get(function() {
-    return `/members/${this._id}`;
+    return `/users/${this._id}`;
 });
 
 module.exports = mongoose.model('User', UserSchema);

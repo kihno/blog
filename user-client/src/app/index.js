@@ -61,7 +61,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login setLogin={setLogin} setCookie={setCookie} />} />
         <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} />} />
-        <Route path='/profile'  element={<Profile />} />
+        <Route path='/users/:id'  element={<Profile />} />
         <Route path='/users'  element={<UserList users={users} />} />
       </Routes>
       <Footer />

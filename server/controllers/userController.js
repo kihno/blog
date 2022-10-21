@@ -13,7 +13,11 @@ exports.user_list = async (req, res, next) => {
 };
 
 exports.user_detail = async (req, res, next) => {
-    const user = await req.context.User.findById(req.params.userId);
+    const user = await req.context.User.findById(req.params.userId).catch((error) => {
+        error.statusCode = 400;
+        next(error);
+    });
+    
     return res.send(user);
 };
 
