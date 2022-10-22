@@ -68,7 +68,7 @@ const Header = (props) => {
             
             {greeting}
 
-            <div className={hidden ? 'hide' : null}>
+            <div className={hidden ? 'hide' : 'header-login'}>
                 <Login isLoggedIn={isLoggedIn} setLogin={setLogin} setHide={setHide} cookies={cookies} setCookie={setCookie} />
             </div>
             

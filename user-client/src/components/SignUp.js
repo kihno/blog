@@ -79,8 +79,8 @@ const SignUp = () => {
         }
     }
 
-    async function handleSubmit(e) {
-            e.preventDefault();
+    function handleSubmit(e) {
+        e.preventDefault();
 
         validateForm();
 

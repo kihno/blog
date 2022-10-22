@@ -61,8 +61,8 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login setLogin={setLogin} setCookie={setCookie} />} />
         <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} />} />
-        <Route path='/users/:id'  element={<Profile />} />
-        <Route path='/users'  element={<UserList users={users} />} />
+        <Route path='/users/:id'  element={<Profile isLoggedIn={isLoggedIn} getCookie={getCookie} />} />
+        <Route path='/users'  element={<UserList users={users} getCookie={getCookie} />} />
       </Routes>
       <Footer />
     </div>

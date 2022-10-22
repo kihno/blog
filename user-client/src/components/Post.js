@@ -26,7 +26,7 @@ const Post = (props) => {
             <article className='post'>
                 <h1 className='postTitle'>{post.title}</h1>
                 <div className='postHeader'>
-                    <h4 className='postUser'>Posted By:
+                    <h4 className='postUser'>{'Posted By: '}
                         <a className='userLink' href={'/users/' + post.user._id}>{post.user.username}</a>
                     </h4>
                     <span>{format(new Date(post.createdAt), 'PPp')}</span>
