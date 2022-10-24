@@ -16,8 +16,7 @@ router.delete('/:userId', passport.authenticate('jwt', { session: false }), chec
 
 function checkPermission(req, res, next) {
     req.context.User.findById(req.params.userId).then(user => {
-
-        if (req.user._id !== user.id && req.user.admin === false) {
+        if (user.id !== req.user._id && req.user.admin === false) {
             let error = new Error(`You don't have permission to do that.`);
             error.statusCode = 401;
             next(error);    }

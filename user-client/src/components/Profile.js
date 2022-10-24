@@ -4,7 +4,7 @@ import UserForm from './UserForm';
 import apis from '../api';
 
 const Profile = (props) => {
-    const { getCookie } = props;
+    const { setCookie, getCookie } = props;
 
     const [user, setUser] = useState(null);
     const [authUser, setAuthUser] = useState(null);
@@ -33,6 +33,7 @@ const Profile = (props) => {
         const authUserAdmin = getCookie('admin');
 
         setAuthUser({id: authUserId, admin: authUserAdmin});
+        setShowForm(false);
     }, [user, getCookie]);
 
     useEffect(() => {
@@ -64,7 +65,7 @@ const Profile = (props) => {
                     <h2>Username:</h2>
                     <span>{user.username}</span>
                     {canUpdate && <button onClick={renderForm}>Update Profile</button>}
-                    {showForm && <UserForm user={user} setUser={setUser} />}
+                    {showForm && <UserForm user={user} setUser={setUser} setCookie={setCookie} getCookie={getCookie} />}
                 </div>
             }
             <div className='user-posts'>

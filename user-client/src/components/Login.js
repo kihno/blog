@@ -30,10 +30,10 @@ const Login = (props) => {
         apis.login(user).then(res => {
             setLogin(true);
            
-            setCookie('jwt_token', res.data.token, {path: '/'});
-            setCookie('user_id', res.data.authUser.id, {path: '/'});
-            setCookie('admin', res.data.authUser.admin, {path: '/'});
-            setCookie('username', res.data.authUser.username, {path: '/'});
+            setCookie('jwt_token', res.data.token, {path: '/', maxAge: 3600});
+            setCookie('user_id', res.data.authUser.id, {path: '/', maxAge: 3600});
+            setCookie('admin', res.data.authUser.admin, {path: '/', maxAge: 3600});
+            setCookie('username', res.data.authUser.username, {path: '/', maxAge: 3600});
 
             setUser({username:'', password:''});
             if (setHide) {

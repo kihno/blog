@@ -61,11 +61,29 @@ exports.user_update = async (req, res, next) => {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
+        id: req.params.userId
     }
+
+    const emailTaken = await req.context.User.findOne({ email: updatedUser.email });
+    const usernameTaken = await req.context.User.findOne({ username: updatedUser.username });
+
+    if (emailTaken && emailTaken.id != updatedUser.id) {
+        console.log(updatedUser.id);
+        console.log(emailTaken.id);
+        let error = new Error(`Email is already in use.`);
+        error.statusCode = 401;
+        error.name = 'emailError'
+        next(error);
+    } else if (usernameTaken && usernameTaken.id != updatedUser.id) {
+        let error = new Error(`Username not available.`);
+        error.statusCode = 401;
+        error.name = 'usernameError'
+        next(error);
+    } else {
+        const result = await req.context.User.findByIdAndUpdate(req.params.userId, updatedUser, {new: true});
     
-    const result = await req.context.User.findByIdAndUpdate(req.params.userId, updatedUser, {new: true});
-    
-    return res.send(result);
+        return res.send(result);
+    }
 };
 
 exports.user_delete = async (req, res, next) => {

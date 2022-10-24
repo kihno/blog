@@ -34,6 +34,7 @@ export const deleteComment = (postId, commentId, token) => api.delete(`/posts/${
 export const getAllUsers = () => api.get('/users');
 export const getUserById = id => api.get(`/users/${id}`);
 export const insertUser = (payload) => api.post('/users', payload);
+export const updateUser = (payload, userId, token) => api.patch(`/users/${userId}`, payload, { headers: { Authorization: `Bearer ${token}` } });
 export const login = user => api.post('/auth', user);
 
 const apis = {
@@ -46,6 +47,7 @@ const apis = {
     getAllUsers,
     getUserById,
     insertUser,
+    updateUser,
     login
 }
 
