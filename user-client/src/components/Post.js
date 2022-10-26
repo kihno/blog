@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import Comments from './Comments';
 import apis from '../api/index';
 import { useParams } from 'react-router-dom';
@@ -29,19 +29,23 @@ const Post = (props) => {
                     <h4 className='postUser'>{'Posted By: '}
                         <a className='userLink' href={'/users/' + post.user._id}>{post.user.username}</a>
                     </h4>
-                    <span>{format(new Date(post.createdAt), 'PPp')}</span>
+                    <span>{formatDistanceToNow(new Date(post.createdAt)) + ' ago.'}</span>
                 </div>
                 <p className='postText'>{post.text}</p>
 
-                <Comments postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} /> 
+                <section className='commentsContainer'>
+                    <h4>{comments ? comments.length + ' Comments' : '0 Comments'}</h4>
+                    <hr></hr>
+                    <Comments postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} /> 
+                </section>
             </article>
         )
     }
     
     return(
-        <div className='postContainer'>
+        <section className='postContainer'>
             {!post ? 'Loading...' : <PostArticle />}
-        </div>
+        </section>
     )
 }
 

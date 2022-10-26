@@ -28,7 +28,7 @@ const CommentForm = (props) => {
         <section className='commentForm'>
             <form action={`/posts/${postId}/comments`}>
                 <label htmlFor='text'>
-                    <input type='text' name='text' value={comment.text} onChange={handleInput}></input>
+                    <textarea className='commentInput' name='text' value={comment.text} onChange={handleInput}></textarea>
                 </label>
                 <button stype='submit' onClick={handleSubmit}>Post</button>
             </form>

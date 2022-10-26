@@ -37,6 +37,17 @@ ol, ul {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  background-color: black;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
 }
 
 .main, .post, .profile, .userList, .signup {
@@ -51,16 +62,33 @@ ol, ul {
   outline: 2px solid red;
 }
 
+button {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 /*NAVBAR*/
 .header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
-.nav {
+.nav, .user {
   display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.guest {
+  display: flex;
+  align-items: center;
   gap: 20px;
 }
 
@@ -70,10 +98,11 @@ ol, ul {
 }
 
 .header-login {
+  background-color: black;
   position: absolute;
   top: 73px;
   right: 0;
-  border: 1px solid black;
+  border: 1px solid white;
   padding: 20px;
 }
 
@@ -92,6 +121,29 @@ ol, ul {
 .postHeader {
   display: flex;
   gap: 20px;
+}
+
+/*COMMENTS*/
+.commentContainer, .comments {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.commentHeader {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.commentInput {
+  width: 100%;
+}
+
+.commentDelete {
+  position: absolute;
+  right: 0;
 }
 
 /*SIGN-UP FORM*/

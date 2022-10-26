@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { format } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
 import apis from '../api';
 import CommentForm from './CommentForm';
 
@@ -8,6 +8,7 @@ const Comment = (props) => {
 
     const [comments, setComments] = useState(null);
     const [authUser, setAuthUser] = useState({});
+    const [isHovering, setIsHovering] = useState(false);
 
     useEffect(() => {
         apis.getPostComments(postId).then(res => {
@@ -30,19 +31,26 @@ const Comment = (props) => {
         sortComments = [...comments].sort((a,b) => a.createdAt > b.createdAt ? -1 : 1);
     }
 
+    function handleMouseOver() {
+        setIsHovering(true);
+    }
+
+    function handleMouseOut() {
+        setIsHovering(false);
+    }
+
     function Comment(props) {
         const { comment } = props;
 
         return(
            
-            <div className='comment' key={comment._id}>
-                 {console.log(authUser)}
-                <div className='CommentHeader'>
-                    <span><a href={'/users/' + comment.user._id}>{comment.user.username}</a></span>
-                    <span>{format(new Date(comment.createdAt), 'PPp')}</span>
-                    {authUser.admin === 'true' || authUser.id == comment.user._id ? <button onClick={() => deleteComment(comment._id)}>X</button> : null}
+            <div className='comment' key={comment._id} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+                <div className='commentHeader'>
+                    <span className='commentUser'><a href={'/users/' + comment.user._id}>{comment.user.username}</a></span>
+                    <span className='commentTime'>{'- ' +formatDistanceToNow(new Date(comment.createdAt)) + ' ago'}</span>
+                    {authUser.admin === 'true' || authUser.id == comment.user._id ? <button className={isHovering ? 'commentDelete' : 'hide'} onClick={() => deleteComment(comment._id)}>X</button> : null}
                 </div>
-                <div className='commentText'>{comment.text}</div>
+                <span className='commentText'>{comment.text}</span>
             </div>
         )
     }
@@ -59,13 +67,13 @@ const Comment = (props) => {
 
     function CommentSection() {
         return(
-            <section className='comments'>
+            <div className='comments'>
                 {sortComments.map(comment => {
                     return(
                         <Comment key={comment._id} comment={comment} />
                     )
                 })}
-            </section>
+            </div>
         )
     }
 
