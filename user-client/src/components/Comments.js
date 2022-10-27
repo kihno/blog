@@ -4,17 +4,16 @@ import apis from '../api';
 import CommentForm from './CommentForm';
 
 const Comment = (props) => {
-    const { isLoggedIn, postId, getCookie } = props;
+    const { comments, setComments, isLoggedIn, postId, getCookie } = props;
 
-    const [comments, setComments] = useState(null);
     const [authUser, setAuthUser] = useState({});
     const [isHovering, setIsHovering] = useState(false);
 
-    useEffect(() => {
-        apis.getPostComments(postId).then(res => {
-            setComments(res.data);
-        });
-    }, [postId]);
+    // useEffect(() => {
+    //     apis.getPostComments(postId).then(res => {
+    //         setComments(res.data);
+    //     });
+    // }, [postId]);
 
     useEffect(() => {
         const userId = getCookie('user_id');

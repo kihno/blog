@@ -106,26 +106,26 @@ const SignUp = () => {
        <section className='signup'>
             <h1>Sign Up Form</h1>
             <form className='signupForm'>
-                <label htmlFor='email'>Email:
+                <div className='form-row'>
+                    <label htmlFor='email'>Email:</label>
                     <input required type='email' name='email' value={user.email} onChange={handleEmailInput}></input>
                     <span className="error emailError">{emailError.error}</span>
-                </label>
-                
-                <label htmlFor='username'>Username:
+                </div>
+                <div className='form-row'>
+                    <label htmlFor='username'>Username:</label>
                     <input required type='text' name='username' value={user.username} onChange={handleUsernameInput}></input>
                     <span className="error usernameError">{usernameError.error}</span>
-                </label>
-                
-                <label htmlFor='password'>Password:
+                </div>
+                <div className='form-row'>
+                    <label htmlFor='password'>Password:</label>
                     <input required type='password' name='password' value={user.password} onChange={handlePasswordInput}></input>
                     <span className="error passwordError">{passwordError.error}</span>
-                </label>
-                
-                <label htmlFor='confirmPassword'>Confirm Password:
+                </div>
+                <div className='form-row'>
+                    <label htmlFor='confirmPassword'>Confirm Password:</label>
                     <input required type='password' name='confirmPassword' value={user.confirmPassword} onChange={handleConformPasswordInput}></input>
                     <span className="error confirmPasswordError">{confirmPasswordError.error}</span>
-                </label>
-                
+                </div>
                 <button type='submit' onClick={handleSubmit}>Submit</button>
             </form>
        </section> 

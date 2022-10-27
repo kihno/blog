@@ -21,10 +21,6 @@ const Post = (props) => {
         })
     }, [id]);
 
-    useEffect(() => {
-        console.log(comments);
-    }, [comments]);
-
     function PostArticle() {
         return(
             <article className='post'>
@@ -40,7 +36,7 @@ const Post = (props) => {
                 <section className='commentsContainer'>
                     <h4>{comments ? comments.length + ' Comments' : '0 Comments'}</h4>
                     <hr></hr>
-                    <Comments postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} /> 
+                    <Comments comments={comments} setComments={setComments} postId={id} isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} /> 
                 </section>
             </article>
         )

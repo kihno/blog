@@ -89,7 +89,7 @@ const UpdateUser = (props) => {
     }
 
     return(
-        <section>
+        <section className='profileForm'>
             <form className='updateProfile'>
                 <label htmlFor='username'>Username:
                     <input type='text' name='username' onChange={handleInputChange} value={updateUser.username}></input>

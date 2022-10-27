@@ -23,8 +23,8 @@ const Header = (props) => {
     function GuestHeader() {
         return(
             <div className='guest'>
-                <button className='login' onClick={handleLoginClick}>Log In</button>
-                <button className='login' onClick={handleSignupClick}>Sign Up</button>
+                <button className='loginButton' onClick={handleLoginClick}>Log In</button>
+                <button className='signUpButton' onClick={handleSignupClick}>Sign Up</button>
                 <button className='adminLogin'>Admin</button>
             </div>
         )

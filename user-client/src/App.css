@@ -1,4 +1,3 @@
-
 /*RESET*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -176,9 +175,81 @@ button:hover {
 }
 
 /*SIGN-UP FORM*/
-.signupForm {
-  display: grid;
-  justify-items: start;
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-row>label {
+  width: 180px;
+  text-align: right;
+}
+
+.form-row>input {
+  width: 300px;
+}
+
+.form-row>.error {
+  position: absolute;
+  left: 520px;
+  width: 250px;
+}
+
+/*LOGIN*/
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:20px;
+  margin-top: 40px;
+}
+
+.loginForm {
+  display: flex;
+  gap: 20px;
+}
+
+/*PROFILE*/
+.user-profile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.user-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-posts>ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profileForm {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.updateProfile, .updatePassword {
+  display: flex;
+  gap: 10px;
 }
 
 /*FOOTER*/

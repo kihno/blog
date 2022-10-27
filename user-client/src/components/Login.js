@@ -8,10 +8,6 @@ const Login = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log(location);
-    }, [location]);
-
     const handleUsernameChange = (e) => {
         const username = e.target.value;
 
@@ -47,9 +43,9 @@ const Login = (props) => {
     }
 
     return(
-        <section className="login">
+        <section className="loginPage">
             {location.state && <div className='message'>{location.state.message}</div>}
-            <form action='#'>
+            <form className='loginForm' action='#'>
                 <label htmlFor='username'>Username:
                     <input type='text' name='username' value={user.username} onChange={handleUsernameChange}></input>
                 </label>

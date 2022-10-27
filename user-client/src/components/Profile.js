@@ -61,20 +61,24 @@ const Profile = (props) => {
     return(
         <section className='profile'>
             {!user ? <div>No user information</div> : 
+            <div className='profile-container'>
                 <div className='user-profile'>
                     <h2>Username:</h2>
                     <span>{user.username}</span>
                     {canUpdate && <button onClick={renderForm}>Update Profile</button>}
-                    {showForm && <UserForm user={user} setUser={setUser} setCookie={setCookie} getCookie={getCookie} />}
                 </div>
+                {showForm && <UserForm user={user} setUser={setUser} setCookie={setCookie} getCookie={getCookie} />}
+            </div>
+                    
             }
             <div className='user-posts'>
                 <h2>Posts:</h2>
-                    <ul>
-                        {hasPosts && posts.map(post => {
-                        return <li key={post._id}><a href={'/posts/' + post._id}>{post.title}</a></li>
-                        })}
-                    </ul>
+                <ul>
+                    {!hasPosts && <p>No Posts Yet.</p>}
+                    {hasPosts && posts.map(post => {
+                    return <li key={post._id}><a href={'/posts/' + post._id}>{post.title}</a></li>
+                    })}
+                </ul>
             </div>
         </section>
     )
