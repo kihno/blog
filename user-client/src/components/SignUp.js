@@ -108,22 +108,22 @@ const SignUp = () => {
             <form className='signupForm'>
                 <label htmlFor='email'>Email:
                     <input required type='email' name='email' value={user.email} onChange={handleEmailInput}></input>
-                    <span className="emailError">{emailError.error}</span>
+                    <span className="error emailError">{emailError.error}</span>
                 </label>
                 
                 <label htmlFor='username'>Username:
                     <input required type='text' name='username' value={user.username} onChange={handleUsernameInput}></input>
-                    <span className="usernameError">{usernameError.error}</span>
+                    <span className="error usernameError">{usernameError.error}</span>
                 </label>
                 
                 <label htmlFor='password'>Password:
                     <input required type='password' name='password' value={user.password} onChange={handlePasswordInput}></input>
-                    <span className="passwordError">{passwordError.error}</span>
+                    <span className="error passwordError">{passwordError.error}</span>
                 </label>
                 
                 <label htmlFor='confirmPassword'>Confirm Password:
                     <input required type='password' name='confirmPassword' value={user.confirmPassword} onChange={handleConformPasswordInput}></input>
-                    <span className="confirmPasswordError">{confirmPasswordError.error}</span>
+                    <span className="error confirmPasswordError">{confirmPasswordError.error}</span>
                 </label>
                 
                 <button type='submit' onClick={handleSubmit}>Submit</button>

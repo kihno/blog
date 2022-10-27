@@ -72,12 +72,16 @@ button:hover {
   cursor: pointer;
 }
 
-/*NAVBAR*/
+.error {
+  color: yellow;
+}
+
+/*HEADER*/
 .header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  border: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .nav, .user {
@@ -92,18 +96,30 @@ button:hover {
   gap: 20px;
 }
 
-/*MAIN*/
-.main>h1 {
-  text-align: center;
-}
-
 .header-login {
   background-color: black;
   position: absolute;
   top: 73px;
   right: 0;
   border: 1px solid white;
-  padding: 20px;
+  padding: 40px;
+}
+
+.login>form {
+  display: flex;
+  gap: 20px;
+}
+
+/*MAIN*/
+.main>h1 {
+  text-align: center;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 750px;
 }
 
 /*POST*/
@@ -116,6 +132,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 750px;
 }
 
 .postHeader {
@@ -123,11 +140,19 @@ button:hover {
   gap: 20px;
 }
 
+.postText {
+  white-space: pre-line;
+}
+
 /*COMMENTS*/
 .commentContainer, .comments {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.commentsContainer {
+  margin-top: 40px;
 }
 
 .commentHeader {
@@ -144,6 +169,10 @@ button:hover {
 .commentDelete {
   position: absolute;
   right: 0;
+}
+
+.commentHr {
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
 /*SIGN-UP FORM*/

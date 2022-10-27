@@ -43,7 +43,6 @@ const Comment = (props) => {
         const { comment } = props;
 
         return(
-           
             <div className='comment' key={comment._id} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                 <div className='commentHeader'>
                     <span className='commentUser'><a href={'/users/' + comment.user._id}>{comment.user.username}</a></span>
@@ -51,6 +50,7 @@ const Comment = (props) => {
                     {authUser.admin === 'true' || authUser.id == comment.user._id ? <button className={isHovering ? 'commentDelete' : 'hide'} onClick={() => deleteComment(comment._id)}>X</button> : null}
                 </div>
                 <span className='commentText'>{comment.text}</span>
+                <hr className='commentHr'></hr>
             </div>
         )
     }

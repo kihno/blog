@@ -17,9 +17,8 @@ const Home = (props) => {
                                 <span className='post-card-user'>
                                     <a href={'/users/' + post.user._id}>{post.user.username}</a>
                                 </span>
-                                <span className='post-card-time'>{format(new Date(post.createdAt), 'PPp')}</span>
+                                <span className='post-card-time'>{' - ' + format(new Date(post.createdAt), 'PP')}</span>
                             </div>
-                            <p className='post-card-text'>{post.text}</p>
                         </article>
                     )
                 })}

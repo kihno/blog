@@ -36,9 +36,9 @@ exports.post_post_comment = [
 
         if (!errors.isEmpty()) {
             req.context.Comment.find({ post: req.params.postId })
-            .exec(function (err, comments) {
-                if (err) {
-                    return next(err);
+            .exec(function (error, comments) {
+                if (error) {
+                    return next(error);
                 }
 
                 return res.send(comments);
@@ -48,7 +48,7 @@ exports.post_post_comment = [
         comment.save((err) => {
             if (err) {
                 console.log(err);
-                return next(err)
+                return next(err);
             }
             
             return res.send(comment);

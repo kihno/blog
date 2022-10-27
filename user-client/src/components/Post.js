@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import Comments from './Comments';
 import apis from '../api/index';
 import { useParams } from 'react-router-dom';
@@ -21,6 +21,10 @@ const Post = (props) => {
         })
     }, [id]);
 
+    useEffect(() => {
+        console.log(comments);
+    }, [comments]);
+
     function PostArticle() {
         return(
             <article className='post'>
@@ -29,7 +33,7 @@ const Post = (props) => {
                     <h4 className='postUser'>{'Posted By: '}
                         <a className='userLink' href={'/users/' + post.user._id}>{post.user.username}</a>
                     </h4>
-                    <span>{formatDistanceToNow(new Date(post.createdAt)) + ' ago.'}</span>
+                    <span>{format(new Date(post.createdAt), 'PPp')}</span>
                 </div>
                 <p className='postText'>{post.text}</p>
 
