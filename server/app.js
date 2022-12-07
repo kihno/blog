@@ -10,10 +10,6 @@ const passport = require('passport');
 require('dotenv').config();
 require('./passport');
 
-// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'MongoDB connection error'));
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
@@ -130,7 +126,7 @@ const createUsersWithPosts = async () => {
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://blog-h854.onrender.com',
     credentials: true
 }));
 app.use(logger('dev'));
