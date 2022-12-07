@@ -1,29 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080/',
+    baseURL: 'https://blog-h854.onrender.com/',
 });
-
-// function getCookie(name) {
-//     const cookieArr = document.cookie.split(';');
-
-//     for (let i=0; i < cookieArr.length; i++) {
-//         let cookiePair = cookieArr[i].split('=');
-
-//         if (name === cookiePair[0].trim()) {
-//             return decodeURIComponent(cookiePair[1]);
-//         }
-//     }
-//     return null;
-// }
-
-// let config = {
-//     headers: {
-//         Authorization: `Bearer ${getCookie('jwt_token')}`,
-//     },
-// }
-
-// console.log(config);
 
 export const getPostById = id => api.get(`/posts/${id}`);
 export const getAllPosts = () => api.get('/posts');

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import apis from '../api';
 
 const UpdateUser = (props) => {
     const { user, setUser, getCookie, setCookie } = props;
     const { id } = useParams();
-    const navigate = useNavigate();
 
     const [updateUser, setUpdateUser] = useState(user);
     const [token, setToken] = useState(null);
@@ -82,10 +81,6 @@ const UpdateUser = (props) => {
            });
            setCookie('username', updateUser.username, {path: '/', maxAge: 3600});
         }
-    }
-
-    function handlePasswordUpdate() {
-        
     }
 
     return(
