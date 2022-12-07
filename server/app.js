@@ -126,7 +126,7 @@ const createUsersWithPosts = async () => {
 const app = express();
 
 app.use(cors({
-    origin: 'https://blog-h854.onrender.com',
+    origin: 'https://blog-frontend-alm2.onrender.com',
     credentials: true
 }));
 app.use(logger('dev'));
