@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { format } from 'date-fns'
 
 const Home = (props) => {
     const { posts } = props;
+
+    useEffect(() => {
+        console.log(posts);
+      }, [posts]);
 
     function PostLayout() {
         return(

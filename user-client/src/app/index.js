@@ -13,10 +13,7 @@ import SignUp from '../components/SignUp';
 import Login from '../components/Login';
 import apis from '../api/index';
 
-// const baseURL = 'http://localhost:8080';
-
 function App() {
-  // const [URL, setURL] = useState(baseURL);
   const [users, setUsers] = useState(null);
   const [posts, setPosts] = useState(null);
   const [isLoggedIn, setLogin] = useState(false);

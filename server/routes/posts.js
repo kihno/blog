@@ -28,15 +28,6 @@ router.get('/:postId/comments/:commentId', comment_controller.get_comment);
 
 router.delete('/:postId/comments/:commentId', passport.authenticate('jwt', { session: false }), checkPermission, comment_controller.delete_comment);
 
-// function checkAdmin(req, res, next) {
-//     if (req.user.admin === false) {
-//         let error = new Error(`You don't have permission to do that.`);
-//         error.statusCode = 401;
-//         next(error);
-//     }
-//     next();
-// }
-
 function checkPermission(req, res, next) {
     req.context.Comment.findById(req.params.commentId).populate('user').then(comment => {
 
