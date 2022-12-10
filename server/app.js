@@ -178,8 +178,8 @@ app.use((error, req, res, next) => {
     .json({ error: error.toString() });
 });
 
-// app.listen(process.env.PORT, () => {
-//     console.log(`Server is listening on port ${process.env.PORT}`)
-// });
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening on port ${process.env.PORT}`)
+});
 
 module.exports = app;
