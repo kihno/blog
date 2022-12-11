@@ -33,7 +33,7 @@ connectDb().then(async () => {
             Comment.deleteMany({})
         ]);
 
-        // createUsersWithPosts();
+        createUsersWithPosts();
     }
 });
 
