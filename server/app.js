@@ -158,7 +158,7 @@ app.use('/posts', postsRouter);
 app.use('/auth', auth);
 
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
 });
 
 app.get('*', function(req, res, next) {
