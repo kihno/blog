@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://blog-server-bgu3.onrender.com',
+    baseURL: 'https://blog-server-production.up.railway.app',
 });
 
 export const getPostById = id => api.get(`/posts/${id}`);

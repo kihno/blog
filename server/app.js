@@ -23,7 +23,7 @@ const connectDb = () => {
     return mongoose.connect(process.env.MONGODB_URI);
 };
 
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = false;
 
 connectDb().then(async () => {
     if (eraseDatabaseOnSync) {
