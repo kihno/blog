@@ -161,15 +161,9 @@ app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
 });
 
-app.get('*', function(req, res, next) {
-    const error = new Error(
-        `${req.ip} tried to access ${req.originalUrl}`,
-    );
-
-    error.statusCode = 301;
-
-    next(error);
-})
+app.get('/*', function(req, res, next) {
+    res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
+});
 
 app.use((error, req, res, next) => {
     if (!error.statusCode) error.statusCode = 500;
