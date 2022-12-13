@@ -134,7 +134,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '..', 'user-client/build')));
 app.use(cookieSession({
     maxAge:24 * 60 * 60 * 1000,
     keys: [process.env.SECRET_KEY]
@@ -152,18 +151,15 @@ app.use(async (req, res, next) => {
     next();
 });
 
+app.use(express.static('build'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join('build', 'index.html'));
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/auth', auth);
-
-app.use('*', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
-});
-
-app.get('/*', function(req, res, next) {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 app.use((error, req, res, next) => {
     if (!error.statusCode) error.statusCode = 500;
