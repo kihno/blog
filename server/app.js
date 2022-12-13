@@ -134,7 +134,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(express.static(path.join(__dirname, '..', 'user-client/build')));
 app.use(cookieSession({
     maxAge:24 * 60 * 60 * 1000,
     keys: [process.env.SECRET_KEY]
@@ -162,7 +162,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/*', function(req, res, next) {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
 });
 
 app.use((error, req, res, next) => {
