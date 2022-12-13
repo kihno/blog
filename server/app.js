@@ -157,13 +157,13 @@ app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/auth', auth);
 
-app.use((req, res, next) => {
+app.use('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
 });
 
-app.get('/*', function(req, res, next) {
-    res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
-});
+// app.get('/*', function(req, res, next) {
+//     res.sendFile(path.join(__dirname, '..', 'user-client/build', 'index.html'));
+// });
 
 app.use((error, req, res, next) => {
     if (!error.statusCode) error.statusCode = 500;
