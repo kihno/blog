@@ -152,8 +152,8 @@ app.use(async (req, res, next) => {
 });
 
 app.use(express.static('build'));
-app.get('*', (req, res) => {
-    res.sendFile(path.join('build', 'index.html'));
+app.get('/*', (req, res) => {
+    res.sendFile(path.join('..', 'user-client', 'build', 'index.html'));
 });
 
 app.use('/', indexRouter);
