@@ -151,11 +151,6 @@ app.use(async (req, res, next) => {
     next();
 });
 
-app.use(express.static('build'));
-app.get('/*', (req, res) => {
-    res.sendFile(path.join('..', 'user-client', 'build', 'index.html'));
-});
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
