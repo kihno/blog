@@ -141,7 +141,7 @@ app.use(cookieSession({
 
 app.use(express.static(path.join(__dirname, "../user-client/build/")));
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
+    res.sendFile(path.join(__dirname, "../user-client/build", "index.html"));
 });
 
 app.use(passport.initialize());
