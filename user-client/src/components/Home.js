@@ -32,7 +32,7 @@ const Home = (props) => {
 
     return(
         <main className='main'>
-            <h1>Welcome to my blog!</h1>
+            <h1>The Things We Think But Do Not Say</h1>
             {!posts ? 'Loading...' : <PostLayout /> }
         </main>
     )

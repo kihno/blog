@@ -206,18 +206,31 @@ button:hover {
   width: 250px;
 }
 
+.signupForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitBtn {
+  align-self: flex-end;
+}
+
 /*LOGIN*/
 .loginPage {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap:20px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .loginForm {
   display: flex;
   gap: 20px;
+}
+
+.adminLogForm {
+  margin-top: 40px;
 }
 
 /*PROFILE*/

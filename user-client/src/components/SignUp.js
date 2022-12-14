@@ -126,7 +126,7 @@ const SignUp = () => {
                     <input required type='password' name='confirmPassword' value={user.confirmPassword} onChange={handleConformPasswordInput}></input>
                     <span className="error confirmPasswordError">{confirmPasswordError.error}</span>
                 </div>
-                <button type='submit' onClick={handleSubmit}>Submit</button>
+                <button className='submitBtn' type='submit' onClick={handleSubmit}>Submit</button>
             </form>
        </section> 
     )

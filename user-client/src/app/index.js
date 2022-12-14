@@ -11,6 +11,7 @@ import UserList from '../components/UserList';
 import Profile from '../components/Profile';
 import SignUp from '../components/SignUp';
 import Login from '../components/Login';
+import AdminLogin from '../components/AdminLogin';
 import apis from '../api/index';
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
         <Route path='/posts/:id'  element={<Post isLoggedIn={isLoggedIn} setLogin={setLogin} getCookie={getCookie} />} />
         <Route path='/users/:id'  element={<Profile isLoggedIn={isLoggedIn} setCookie={setCookie} getCookie={getCookie} />} />
         <Route path='/users'  element={<UserList users={users} getCookie={getCookie} />} />
+        <Route path='/admin' element={<AdminLogin />} />
       </Routes>
       <Footer />
     </div>

@@ -25,7 +25,7 @@ const Header = (props) => {
             <div className='guest'>
                 <button className='loginButton' onClick={handleLoginClick}>Log In</button>
                 <button className='signUpButton' onClick={handleSignupClick}>Sign Up</button>
-                <button className='adminLogin'>Admin</button>
+                <button className='adminLogin' onClick={handleAdminClick}>Admin</button>
             </div>
         )
     }
@@ -36,6 +36,10 @@ const Header = (props) => {
 
     function handleSignupClick() {
         navigate('/signup');
+    }
+
+    function handleAdminClick() {
+        navigate('/admin');
     }
 
     const handleLogout = () => {
@@ -55,7 +59,7 @@ const Header = (props) => {
     return(
         <header className='header'>
             <h1 className='logo'>  
-            <a href='/'>My Blog</a>
+            <a href='/'>TTWTBDNS</a>
             </h1>
             <ul className='nav'>
                 <li className='link'>
