@@ -1,6 +1,6 @@
 # Blog
 
-![](src/images/blog.png)
+![](user-client/src/images/blog.png)
 
 https://blog-frontend-alm2.onrender.com/
 
